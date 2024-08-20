@@ -2,7 +2,8 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH, FRAME_RATE
+from constants import PLAYER_RADIUS, SCREEN_HEIGHT, SCREEN_WIDTH, FRAME_RATE
+from player import Player
 
 
 def main():
@@ -14,12 +15,18 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    # create a player object
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y, PLAYER_RADIUS)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
 
         # limit the framerate to 60 FPS
